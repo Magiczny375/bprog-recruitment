@@ -1,1 +1,1 @@
-Przykładowy dokument PDF: {{ $input }}
+Przykladowy dokument PDF: {{ $input }}

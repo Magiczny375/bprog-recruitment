@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use Barryvdh\DomPDF\Facade\Pdf;
-use http\Client\Response;
+use Illuminate\Http\Response;
 
 class PdfService
 {
@@ -17,6 +17,8 @@ class PdfService
     public function generate(array $input): Response
     {
         $pdf = Pdf::loadView('pdf.simple', $input);
-        return $pdf->download('invoice.pdf');
+
+        // Show generated PDF file in browser. We can use download method to download generated file to PC.
+        return $pdf->stream('invoice.pdf');
     }
 }
