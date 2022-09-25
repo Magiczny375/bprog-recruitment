@@ -54,7 +54,11 @@ class Product extends Model
         return $this->prices()->whereNot('type', 1)->first();
     }
 
-    public function getPriceAttribute()
+    /**
+     * Get price attribute to sort.
+     * @return int
+     */
+    public function getPriceAttribute(): int
     {
         return $this->discountPrice() ? (int)$this->discountPrice()->value : (int)$this->standardPrice()->value;
     }
