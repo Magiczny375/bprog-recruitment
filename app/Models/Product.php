@@ -23,6 +23,10 @@ class Product extends Model
         'name'
     ];
 
+    protected $casts = [
+        'price' => 'integer'
+    ];
+
     /**
      * Get all prices for this product model.
      * @return HasMany
@@ -48,5 +52,10 @@ class Product extends Model
     public function standardPrice(): ProductPrice
     {
         return $this->prices()->whereNot('type', 1)->first();
+    }
+
+    public function getPriceAttribute()
+    {
+        return $this->discountPrice() ? (int)$this->discountPrice()->value : (int)$this->standardPrice()->value;
     }
 }

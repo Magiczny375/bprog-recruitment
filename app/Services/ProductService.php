@@ -26,7 +26,7 @@ class ProductService
         }
 
         // Return product with ProductPrice relation.
-        return Product::query()->with('prices')->where("name", "LIKE", "%$name%")->get();
+        return Product::query()->with('prices')->where("name", "LIKE", "%$name%")->get()->sortBy('price');
     }
 
     /**
